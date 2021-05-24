@@ -1,6 +1,5 @@
 import pandas as pd
-from sever import app
-from run import events_rds, orgs_rds
+from sever import app, events_rds, orgs_rds
 @app.route("/recommend/events/<string:user_id>/<string:item_id>")
 def events_recommend(user_id,item_id):
     df=pd.read_csv("database/events_clicking.csv")

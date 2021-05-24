@@ -1,7 +1,7 @@
 import requests
-from sever import app
-from run import link
+from sever import app,link
 import pandas as pd
+import threading
 #function to get graphql 
 def run_query(query):
   global link
@@ -10,7 +10,16 @@ def run_query(query):
       return request.json()
   else:
       raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
-@app.route("/update")
+
+#setInterval
+def set_interval(func, sec):
+    def func_wrapper():
+        set_interval(func, sec)
+        func()
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+   
+
 def update():
     #query sql api
     events_query = """
@@ -83,4 +92,3 @@ def update():
     #create pandas framework from dic then save it to category
     df=pd.DataFrame(data=dic)
     df.to_csv('database/orgs_category.csv',index=False)
-    return "UPDATED"

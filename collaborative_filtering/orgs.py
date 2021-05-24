@@ -96,7 +96,7 @@ class CF_orgs():
     #Remove nan category 
     nan_position=[]
     for i in range(len(item_category)):
-        if type(item_category[i])==float:
+        if item_category[i]!= item_category[i]:
             nan_position.append(i)
     for i in nan_position:
         item_category=np.delete(item_category,i)
