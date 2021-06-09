@@ -6,7 +6,7 @@
 2. Change directory:
 - Go to terminal and cd Projectube_Recommendation_System
 
-3. GraphQL link:
+3. GraphQL DATABASE link:
 - export GRAPHQL=link (REMEMBER NO SPACE BETWEEN =) 
 
 4. Install packages:
