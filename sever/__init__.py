@@ -1,10 +1,14 @@
 from flask import Flask
+from flask_cors import CORS, cross_origin
 from collaborative_filtering.events import CF_events
 from collaborative_filtering.orgs import CF_orgs
 import pandas as pd
-
+import os
 app=Flask(__name__)
-link="http://beta.projectube.org/api/gql"
+cors=CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+# link="https://projectube-server.herokuapp.com/api/gql"
+link=os.environ.get("GRAPHQL")
 events_clicking=pd.read_csv("database/events_clicking.csv", encoding="latin-1")
 events_category=pd.read_csv("database/events_category.csv", encoding="latin-1")
 events_rds=CF_events(events_clicking,events_category,2,8)

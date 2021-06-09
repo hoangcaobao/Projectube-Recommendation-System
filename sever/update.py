@@ -1,8 +1,9 @@
 import requests
-from sever import app,link
+from sever import link
 import pandas as pd
 import threading
-#function to get graphql 
+#function to get graphql
+
 def run_query(query):
   global link
   request = requests.post(link, json={'query': query})
@@ -76,11 +77,12 @@ def update():
     for org in orgs:
         categories=org['categories']
         dic['item_id'].append(org['id'])
-        if len(event['categories'])==1:
+       
+        if len(org['categories'])==1:
             dic['Category_1'].append(categories[0])
             dic['Category_2'].append(None)
             dic['Category_3'].append(None)
-        elif len(event['categories'])==2:
+        elif len(org['categories'])==2:
             dic['Category_1'].append(categories[0])
             dic['Category_2'].append(categories[1])
             dic['Category_3'].append(None)
@@ -88,6 +90,7 @@ def update():
             dic['Category_1'].append(categories[0])
             dic['Category_2'].append(categories[1])
             dic['Category_3'].append(categories[2])
+       
 
     #create pandas framework from dic then save it to category
     df=pd.DataFrame(data=dic)

@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -140,6 +141,44 @@ class CF_events():
     self.category=events_category
     self.preprocessing_data()
 
+  def hottest(self,item_id):
+    if len(self.category[self.category["item_id"]==item_id])==0:
+      item_category=[]
+    else:  
+      item_category=self.category[self.category["item_id"]==item_id].to_numpy()[0][1:]
+    
+    #Remove nan category 
+    nan_position=[]
+    for i in range(len(item_category)):
+        if item_category[i]!=item_category[i]:
+            nan_position.append(i)
+    for i in nan_position:
+        item_category=np.delete(item_category,i)
+    items_score=[]
+    for item in self.category['item_id']:
+      #check whether item has already in recommend list
+      if item==item_id :
+        continue
+      category_score=0
+      if len(self.category[self.category['item_id']==item])==0:
+        continue
+      for i in self.category[self.category["item_id"]==item].to_numpy()[0][1:]:
+        #plus 1 to score if have the same category
+        if i in item_category:
+          category_score+=1
+      try:
+        clicking_score=self.clean_data3.loc[item]
+      except:
+        clicking_score=0
+      items_score.append((item, category_score, clicking_score))
+        
+    items_score.sort(key=lambda x: (x[1], x[2]),reverse=True)
+    recommend_list=[]
+    for i in range(len(items_score)):
+      recommend_list.append(items_score[i][0])
+    
+    return recommend_list
+    
   def welcome_recommend(self,user_id):
     dic={
       'hottest_events':[],
@@ -179,8 +218,32 @@ class CF_events():
         
     items_score.sort(key=lambda x: (x[1]),reverse=True)
     for i in items_score:
-      if count==10:
+      if count==100:
         break
       recommended_items_hottest.append(i[0])
+      count+=1
+    dic['hottest_events']=recommended_items_hottest
+    return dic
+  def welcome(self):
+    items_score=[]
+    self.clean_data3=self.clean_data3.sort_values(ascending=False)
+    recommended_items_hottest=[]
+    count=0
+    dic={
+     'hottest_events':[],
+    }
+    for item in self.category['item_id']:
+      try:
+        clicking_score=self.clean_data3.loc[item]
+      except:
+        clicking_score=0
+      items_score.append((item,  clicking_score))
+        
+    items_score.sort(key=lambda x: (x[1]),reverse=True)
+    for i in items_score:
+      if count==100:
+        break
+      recommended_items_hottest.append(i[0])
+      count+=1
     dic['hottest_events']=recommended_items_hottest
     return dic
