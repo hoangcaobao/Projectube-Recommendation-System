@@ -1,7 +1,7 @@
 # Hướng Dẫn Sử Dụng  Rec Sever
 ## 1.  Để recommend cho guest
-- Nếu khách đang bấm xem orgs call https://recommendationsystemprojectube.herokuapp.com/events/(orgs_id)
-- Nếu khách đang bấm xem events call https://recommendationsystemprojectube.herokuapp.com/orgs/(events_id)
+- Nếu khách đang bấm xem orgs call https://recommendationsystemprojectube.herokuapp.com/orgs/(orgs_id)
+- Nếu khách đang bấm xem events call https://recommendationsystemprojectube.herokuapp.com/events/(events_id)
 
 ## 2. Để recommend cho tài khoản đã đăng ký
 
