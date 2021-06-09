@@ -8,5 +8,8 @@
 3. GraphQL link:
 - export GRAPHQL= link 
 
-4. Run:
+4. Install packages:
+- pip install -r requirements.txt
+
+5. Run:
 - python3 wsgi.py
