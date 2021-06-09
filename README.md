@@ -5,7 +5,7 @@
 2. Change directory:
 - Go to terminal and cd Projectube_Recommendation_System
 
-3. GraphQl link:
+3. GraphQL link:
 - export GRAPHQL= link 
 
 4. Run:
