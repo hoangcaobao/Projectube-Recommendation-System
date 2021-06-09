@@ -10,7 +10,7 @@
 
 
 ## 3. Recommend home page for guest
-- call https://recommendationsystemprojectube.herokuapp.com/welcome
+- call /welcome
 
 ## 4. Recommend home page for registered user
-- call https://recommendationsystemprojectube.herokuapp.com/welcome/(user_id)
+- call /welcome/(user_id)
