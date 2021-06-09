@@ -7,7 +7,7 @@
 - Go to terminal and cd Projectube_Recommendation_System
 
 3. GraphQL link:
-- export GRAPHQL= link 
+- export GRAPHQL=link (REMEMBER NO SPACE BETWEEN =) 
 
 4. Install packages:
 - pip install -r requirements.txt
