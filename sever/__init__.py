@@ -7,7 +7,6 @@ import os
 app=Flask(__name__)
 cors=CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-# link="https://projectube-server.herokuapp.com/api/gql"
 link=os.environ.get("GRAPHQL")
 events_clicking=pd.read_csv("database/events_clicking.csv", encoding="latin-1")
 events_category=pd.read_csv("database/events_category.csv", encoding="latin-1")
