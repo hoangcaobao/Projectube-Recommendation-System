@@ -1,5 +1,5 @@
 # Projectube_Recommendation_System
-### This is recommendation system sever for Projectube developed by insource team of VietCode company
+
 1. Clone
 - Go to terminal
 ```
