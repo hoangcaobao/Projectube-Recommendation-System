@@ -39,7 +39,7 @@ class CF_orgs():
       self.clean_data.reset_index(inplace=True)
     
       self.sim=cosine_similarity(csr_data.T,csr_data.T)
-     
+      self.delete()
     except:
       pass
     
@@ -245,3 +245,20 @@ class CF_orgs():
       count+=1
     dic['hottest_orgs']=recommended_items_hottest
     return dic
+  
+  def delete(self):
+    #delete an org in clicking due to the removal
+    total_item= self.category["item_id"]
+    clicking_item= self.clicking["item_id"]
+    contain=[]
+    for i in clicking_item:
+      check=False
+      for j in total_item:
+        if(i==j):
+          check=True
+          break
+      if(check==False):
+        contain.append(i)
+    for i in contain:
+      self.clicking=self.clicking[self.clicking["item_id"]!=i]
+    self.clicking.to_csv('database/orgs_clicking.csv',index=False)
