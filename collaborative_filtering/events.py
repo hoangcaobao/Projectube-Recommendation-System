@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -13,7 +12,6 @@ class CF_events():
   def __init__(self,events_clicking,events_category,k,number_of_recommend):
     self.k=k
     self.clicking=events_clicking
-    
     self.recommended_items_final=[]
     self.category=events_category
     self.number_of_recommend=number_of_recommend
@@ -38,9 +36,9 @@ class CF_events():
       self.clean_data2=self.clean_data.copy()
       csr_data=csr_matrix(self.clean_data)
       self.clean_data.reset_index(inplace=True)
-    
       self.sim=cosine_similarity(csr_data.T,csr_data.T)
-     
+
+      self.delete()
     except:
       pass
     
@@ -247,3 +245,20 @@ class CF_events():
       count+=1
     dic['hottest_events']=recommended_items_hottest
     return dic
+  
+  def delete(self):
+    #delete an event in clicking due to the removal
+    total_item= self.category["item_id"]
+    clicking_item= self.clicking["item_id"]
+    contain=[]
+    for i in clicking_item:
+      check=False
+      for j in total_item:
+        if(i==j):
+          check=True
+          break
+      if(check==False):
+        contain.append(i)
+    for i in contain:
+      self.clicking=self.clicking[self.clicking["item_id"]!=i]
+    self.clicking.to_csv('database/events_clicking.csv',index=False)
