@@ -95,7 +95,7 @@ class CF_orgs():
     
     #Remove nan category 
     nan_position=[]
-    for i in range(len(item_category)):
+    for i in range(len(item_category)-1,-1,-1):
         if item_category[i]!= item_category[i]:
             nan_position.append(i)
     for i in nan_position:
