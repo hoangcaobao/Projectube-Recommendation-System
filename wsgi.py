@@ -1,5 +1,5 @@
-from sever import app
-from sever.update import update, set_interval
+from server import app
+from server.update import update, set_interval
 
 if __name__=="__main__":
   set_interval(update,5)
