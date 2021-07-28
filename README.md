@@ -40,7 +40,7 @@ cd Projectube_Recommendation_System
 ```
 docker image build -t app .
 ```
-4 Docker run:
+4. Docker run:
 ```
 docker run -e GRAPHQL=link -p 5000:5000 app
 ```
