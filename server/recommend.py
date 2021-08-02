@@ -85,6 +85,8 @@ def guest_orgs_recommend(item_id):
     else:
     #If user already clicked then increase the amount of click by 1 
       df.at[a.index[0], 'Clicking'] =a["Clicking"]+1
+    #Save data to clicking.csv
+    df.to_csv("database/orgs_clicking.csv",index=False)
     dict={
       "list_of_recommend": orgs_rds.hottest(item_id)
     }
