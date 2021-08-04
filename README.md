@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ```
 python3 wsgi.py
 ```
-
+---
 ## Docker use
 1. Clone
 - Go to terminal
@@ -44,3 +44,5 @@ docker image build -t app .
 ```
 docker run -e GRAPHQL=link -p 5000:5000 app
 ```
+---
+## HOANG CAO BAO
