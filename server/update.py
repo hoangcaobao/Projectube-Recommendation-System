@@ -5,6 +5,7 @@ import threading
 from server import events_rds, orgs_rds
 from collaborative_filtering.events import CF_events
 from collaborative_filtering.orgs import CF_orgs
+import time
 #function to get graphql
 
 def run_query(query):
@@ -18,6 +19,7 @@ def run_query(query):
 #setInterval
 def set_interval(func, sec):
     def func_wrapper():
+        time.sleep(5)
         set_interval(func, sec)
         func()
     t = threading.Timer(sec, func_wrapper)
