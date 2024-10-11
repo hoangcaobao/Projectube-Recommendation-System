@@ -1,5 +1,5 @@
-# Projectube_Recommendation_System
-I design recommendation system server using Flask for [Projectube](https://www.projectube.org/)
+# Projectube Recommendation System
+I design a recommendation system server using Flask for [Projectube](https://www.projectube.org/)
 ## Normal use
 1. Clone
 - Go to terminal
